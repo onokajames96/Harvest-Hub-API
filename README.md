@@ -40,7 +40,6 @@ Tech Stack
     Environment Variables: Dotenv
     Dev Tools: Nodemon
     Validation: Validator
-    Payment Integration: Stripe / Flutterwave SDK
 
 Installation
 
@@ -48,8 +47,8 @@ Installation
 
     bash
 
-git clone https://github.com/yourusername/ecommerce-api.git
-cd ecommerce-api
+git clone https://github.com/yourusername/Harvest-Hub-API.git
+cd Harvest-Hub-API
 
 Install dependencies:
 
