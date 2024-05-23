@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 
 const sendEmail = require('../utils/sendEmail');
-const User = require('../models/userModel');
+const User = require('../models/user');
 
 // Generate JWT
 const generateToken = (user) => {
