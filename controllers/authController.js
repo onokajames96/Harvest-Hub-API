@@ -11,7 +11,7 @@ const generateToken = (user) => {
 	return jwt.sign(
 		{ id: user._id },
 		process.env.JWT_SECRET,
-		{ expiresIn: '1h' }
+		{ expiresIn: '9h' }
 	);
 };
 
@@ -22,7 +22,7 @@ const registerUser = async (req, res) => {
 		return res.status(400).json({ errors: errors.array() });
 	}
 
-	const { name, email, password, roles } = req.body;
+	const { name, email, password, role } = req.body;
 
 	try {
 		let user = await User.findOne({ email });
@@ -34,7 +34,7 @@ const registerUser = async (req, res) => {
 			name,
 			email,
 			password,
-			roles,
+			role,
 			verificationToken: crypto.randomBytes(20).toString('hex')
 		});
 
@@ -52,6 +52,8 @@ const registerUser = async (req, res) => {
 			text: `Please verify your account by clicking the link: ${verifyUrl}`
 		});
 
+		console.log(verifyUrl);
+		console.log(user.verificationToken);
 		res.status(201).json({ message: "Verification email sent" });
 	}  catch (err) {
 		console.error(err.message);
@@ -133,6 +135,7 @@ const requestPasswordReset = async (req, res) => {
 			text: `Please reset your password by clicking the link: ${resetUrl}`
 			});
 
+		console.log(user.resetPasswordToken);
 		res.json({ message: 'Password reset email sent' });
 
 		} catch (err) {

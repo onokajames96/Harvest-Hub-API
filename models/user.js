@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
                 type: String,
                 enum: ['admin', 'buyer', 'seller'],
                 required: true,
-		default: 'buyer'
+		default: 'seller'
         },
         isVerified: {
                 type: Boolean,
