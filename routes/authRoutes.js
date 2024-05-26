@@ -9,50 +9,26 @@ const {
 	requestPasswordReset,
 	resetPassword,
 	changePassword } = require('../controllers/authController');
-
+const { validate,
+	validateUserRegistration,
+	validateUserLogin,
+	validateResetRequest,
+	validatePasswordReset,
+	validatePasswordChange } = require('../middlewares/validators');
 
 const router = express.Router();
 
-router.post("/register", 
-	[
-		check('name', 'Name is required').not().isEmpty(),
-		check('email', 'Please include a valid email').isEmail(),
-		check('password', 'Password must be at least 6 characters').isLength({ min: 6 })
-	],
-	registerUser
-);
+router.post("/register", validate(validateUserRegistration), registerUser);
 
 router.get('/verify/:token', verifyUser);
 
-router.post(
-	"/login",
-	[
-		check('email', 'Please include a valid email').isEmail(),
-		check('password', 'Password is required').exists()
-	],
-	loginUser
-);
+router.post("/login", validate(validateUserLogin), loginUser);
 
-router.post('/request-reset',
-	[
-		check('email', 'Please include a valid email').isEmail()
-	],
-	requestPasswordReset
-);
+router.post('/request-reset', validate(validateResetRequest), requestPasswordReset);
 
-router.post('/reset/:token',
-	[
-		check('password', 'Password must be at least 6 characters').isLength({ min: 6 })
-	],
-	resetPassword
-);
+router.post('/reset/:token', validate( validatePasswordReset), resetPassword);
 
-router.put('/change-password', auth,
-	[
-		check('oldPassword', 'Old password is required').exists(),
-		check('newPassword', 'New password must be at least 6 characters').isLength({ min: 6 })
-	],
-	changePassword
+router.put('/change-password', auth, validate(validatePasswordChange), changePassword
 );
 
 module.exports = router;

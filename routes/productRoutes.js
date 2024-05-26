@@ -8,6 +8,9 @@ const {
     deleteProduct
 } = require('../controllers/productController');
 
+const { validate, validateProductCreation } = require('../middlewares/validators');
+
+
 const { auth, authorize } = require('../middlewares/auth');
 
 const router = express.Router();
@@ -17,8 +20,8 @@ router.get('/seller', auth, authorize('admin', 'seller'), getSellerProducts);
 router.delete('/:id', auth, authorize('admin', 'seller'), deleteProduct);
 
 // Routes for sellers
-router.post('/', auth, authorize('seller'), createProduct);
-router.put('/:id', auth, authorize('seller'), updateProduct);
+router.post('/', auth, authorize('seller'), validate(validateProductCreation), createProduct);
+router.put('/:id', auth, authorize('seller'), validate(validateProductCreation), updateProduct);
 
 // Routes for admins, buyers and sellers
 router.get('/', auth, authorize('admin', 'buyer', 'seller'), getProducts);
