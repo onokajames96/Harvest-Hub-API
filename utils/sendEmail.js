@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 
+require('dotenv').config(); // Ensure environment variables are loaded
+
 const sendEmail = async (options) => {
 	const transporter = nodemailer.createTransport({
 		service: 'Gmail',

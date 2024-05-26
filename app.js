@@ -3,6 +3,9 @@ const cors = require('cors');
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const productRoutes = require('./routes/productRoutes');
+
+require('dotenv').config(); // Ensure environment variables are loaded
 
 const app = express();
 
@@ -13,6 +16,7 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
 
 // Base Route
 app.get('/', (req, res) => {
