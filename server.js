@@ -12,4 +12,3 @@ connectDB().then(() => {
 	console.error("Failed to Connect to MongoDB...!", err);
 	process.exit(1);
 });
-

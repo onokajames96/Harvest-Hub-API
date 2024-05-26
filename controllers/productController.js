@@ -3,7 +3,7 @@ const Product = require('../models/product');
 // Create a new product (Sellers only)
 const createProduct = async (req, res) => {
     try {
-        const { name, description, price, category, stock, imageUrl } = req.body;
+        const { name, description, price, category, stock } = req.body;
 	const seller = req.user.id; // Get user ID from the authenticated user
 
         const product = new Product({
@@ -62,7 +62,7 @@ const getProductById = async (req, res) => {
 // Update a product by ID (Sellers only)
 const updateProduct = async (req, res) => {
     try {
-        const { name, description, price, category, stock, imageUrl } = req.body;
+        const { name, description, price, category, stock } = req.body;
 
         const product = await Product.findById(req.params.id);
         if (!product) {
@@ -78,7 +78,6 @@ const updateProduct = async (req, res) => {
         product.price = price || product.price;
         product.category = category || product.category;
         product.stock = stock || product.stock;
-        product.imageUrl = imageUrl || product.imageUrl;
 
         await product.save();
         res.status(200).json(product);
