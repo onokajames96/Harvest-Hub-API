@@ -4,7 +4,8 @@ const { auth, authorize } = require('../middlewares/auth');
 
 const { 
 	validate,
-	validateUserRegistration } = require('../middlewares/validators');
+	validateUserRegistration 
+} = require('../middlewares/validators');
 
 const {
  getAllUsers,
@@ -16,12 +17,12 @@ const {
 const router = express.Router();
 
 // User management routes
-router.get('/users', auth, authorize('admin'), getAllUsers);
-router.get('/users/:id', auth, authorize('admin'), getUserById);
-router.put('/users/:id', auth, authorize('admin', 'buyer', 'seller'), validate(
-	validateUserRegistration), updateUser);
-router.delete('/users/:id', auth, authorize('admin'), deleteUser);
+router.get('/', auth, authorize('admin'), getAllUsers);
 
-// Product, cart, and order management routes would be added similarly
+router.route('/:id')
+	.get(auth, authorize('admin'), getUserById)
+	.put(auth, authorize('admin', 'buyer', 'seller'), validate(
+		validateUserRegistration), updateUser)
+	.delete(auth, authorize('admin'), deleteUser);
 
 module.exports = router;

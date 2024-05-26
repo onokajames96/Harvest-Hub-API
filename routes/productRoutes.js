@@ -8,23 +8,28 @@ const {
     deleteProduct
 } = require('../controllers/productController');
 
-const { validate, validateProductCreation } = require('../middlewares/validators');
+const {
+	validate, 
+	validateProductCreation
+} = require('../middlewares/validators');
 
 
 const { auth, authorize } = require('../middlewares/auth');
 
 const router = express.Router();
 
-// Routes for admin and sellers
+// Routes 
 router.get('/seller', auth, authorize('admin', 'seller'), getSellerProducts);
-router.delete('/:id', auth, authorize('admin', 'seller'), deleteProduct);
 
-// Routes for sellers
-router.post('/', auth, authorize('seller'), validate(validateProductCreation), createProduct);
-router.put('/:id', auth, authorize('seller'), validate(validateProductCreation), updateProduct);
+router.route('/:id')
+	.get(auth, authorize('admin', 'buyer', 'seller'), getProductById)
+	.put(auth, authorize('seller'), validate(
+		validateProductCreation), updateProduct)
+	.delete(auth, authorize('admin', 'seller'), deleteProduct);
 
-// Routes for admins, buyers and sellers
-router.get('/', auth, authorize('admin', 'buyer', 'seller'), getProducts);
-router.get('/:id', auth, authorize('admin', 'buyer', 'seller'), getProductById);
+router.route('/')
+	.post(auth, authorize('seller'), validate(
+		validateProductCreation), createProduct)
+	.get(auth, authorize('admin', 'buyer', 'seller'), getProducts)
 
 module.exports = router;

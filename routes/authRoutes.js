@@ -24,11 +24,12 @@ router.get('/verify/:token', verifyUser);
 
 router.post("/login", validate(validateUserLogin), loginUser);
 
-router.post('/request-reset', validate(validateResetRequest), requestPasswordReset);
+router.post('/request-reset', validate(
+	validateResetRequest), requestPasswordReset);
 
 router.post('/reset/:token', validate( validatePasswordReset), resetPassword);
 
-router.put('/change-password', auth, validate(validatePasswordChange), changePassword
-);
+router.put('/change-password', auth, validate(
+	validatePasswordChange), changePassword);
 
 module.exports = router;
