@@ -6,6 +6,8 @@ const { validationResult } = require('express-validator');
 const sendEmail = require('../utils/sendEmail');
 const User = require('../models/user');
 
+require('dotenv').config(); // Ensure environment variables are loaded
+
 // Generate JWT
 const generateToken = (user) => {
 	return jwt.sign(
@@ -44,7 +46,8 @@ const registerUser = async (req, res) => {
 
 		await user.save();
 
-		const verifyUrl = `http://${req.headers.host}/api/users/verify/${user.verificationToken}`;
+		// Use req.headers.host for local environment
+		const verifyUrl = `http://${req.headers.host}/api/auth/verify/${user.verificationToken}`;
 
 		await sendEmail({
 			to: user.email,
