@@ -1,4 +1,4 @@
-const Product = require('../models/productModel');
+const Product = require('../models/product');
 
 // Create a new product (Sellers only)
 const createProduct = async (req, res) => {
@@ -112,6 +112,7 @@ const deleteProduct = async (req, res) => {
 module.exports = {
     createProduct,
     getProducts,
+    getSellerProducts,
     getProductById,
     updateProduct,
     deleteProduct
