@@ -1,4 +1,5 @@
 const express = require('express');
+const swaggerSetup = require('./swaggerConfig');
 const cors = require('cors');
 const compression = require('compression');
 
@@ -14,6 +15,7 @@ const app = express();
 app.use(compression());
 app.use(cors());
 app.use(express.json());
+swaggerSetup(app);
 
 // Routes
 app.use('/api/auth', authRoutes);
