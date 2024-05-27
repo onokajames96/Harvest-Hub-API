@@ -7,14 +7,13 @@ const createProduct = async (req, res) => {
 	const seller = req.user.id; // Get user ID from the authenticated user
 
         const product = new Product({
-            seller,
-	    name,
-            description,
-            price,
-            category,
-            stock,
-            imageUrl
-        });
+		seller,
+		name,
+		description,
+		price,
+		category,
+		stock
+	});
 
         await product.save();
         res.status(201).json(product);
