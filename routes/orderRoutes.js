@@ -8,6 +8,7 @@ router.post('/create', auth, orderController.createOrder);
 
 // Get user orders
 router.get('/:userId', auth, orderController.getUserOrders);
+ls
 
 // Get single order
 router.get('/order/:orderId', auth, orderController.getOrder);
