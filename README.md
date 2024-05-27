@@ -17,16 +17,17 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 
 ### Features
 
-    # Authentication and Authorization.
+    #### Authentication and Authorization.
 
 Role-based user authentication and authorization was implemented. We currently included three types of users namely admin, buyer, and seller. The default user is set to seller. Therefore, if a user registers without the role field, they will be assigned the default role. Bellow is a summary of the process and routes involved.
-	- Register a user
-	- Verify a user's email
-	- Login a user
-	- Authrize user by issuing a JWT token
-	- Request password reset
-	- Reset password
-	- Change password
+	# Authentication and Authorization.
+		Register a user
+		Verify a user's email
+		Login a user
+		Authrize user by issuing a JWT token
+		Request password reset
+		Reset password
+		Change password
 
 A user registered as a seller essentially represent the farmer. Sellers are authorised to all product management routes as detailed under product management.
 
@@ -37,13 +38,11 @@ Admin users on the other hand are like super user. They have a broader array of 
 For detailed description of this API's endpoints.
 
     # Product Management
-
-Below is a summary of the product management routes.
-	- Add a product
-	- Edit a product
-	- View all products
-	- View a product by its ID
-	- Delete a product by its ID
+	Add a product
+	Edit a product
+	View all products
+	View a product by its ID
+	Delete a product by its ID
 
 For a detailed description of this APS's endpoints.
 
