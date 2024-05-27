@@ -20,14 +20,15 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
     #### Authentication and Authorization.
 
 Role-based user authentication and authorization was implemented. We currently included three types of users namely admin, buyer, and seller. The default user is set to seller. Therefore, if a user registers without the role field, they will be assigned the default role. Bellow is a summary of the process and routes involved.
-	# Authentication and Authorization.
-		Register a user
-		Verify a user's email
-		Login a user
-		Authrize user by issuing a JWT token
-		Request password reset
-		Reset password
-		Change password
+
+    # Authentication and Authorization.
+        Register a user
+	Verify a user's email
+	Login a user
+	Authrize user by issuing a JWT token
+	Request password reset
+	Reset password
+	Change password
 
 A user registered as a seller essentially represent the farmer. Sellers are authorised to all product management routes as detailed under product management.
 
