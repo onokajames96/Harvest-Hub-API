@@ -17,7 +17,7 @@ const validateUserRegistration = [
     check('name').not().isEmpty().withMessage('Name is required'),
     check('email').isEmail().withMessage('Please include a valid email'),
     check('password').isLength({ min: 6 }).withMessage(
-	    'Password must be at least 6 characters long')
+        'Password must be at least 6 characters long')
 ];
 
 // Validation rules for user login
@@ -34,26 +34,26 @@ const validateResetRequest = [
 // Validation rules for password reseting
 const validatePasswordReset = [
      check('password', 
-	     'Password must be at least 6 characters').isLength({ min: 6 })
+         'Password must be at least 6 characters').isLength({ min: 6 })
 ];
 
 // Validation rules for password changing
 const validatePasswordChange = [
      check('oldPassword', 'Old password is required').exists(),
      check('newPassword',
-	     'New password must be at least 6 characters').isLength({ min: 6 })
+         'New password must be at least 6 characters').isLength({ min: 6 })
 ];
 
 // Validation rules for product creation
 const validateProductCreation = [
     check('name').not().isEmpty().withMessage('Name is required'),
     check('price').isFloat({ gt: 0 }).withMessage(
-	    'Price must be greater than 0'),
+        'Price must be greater than 0'),
     check('category').not().isEmpty().withMessage('Category is required'),
     check('description').not().isEmpty().withMessage(
-	    'Description is required'),
+        'Description is required'),
     check('stock').not().isFloat({ gt: 0 }).withMessage(
-	    'Stock must be greater than 0')
+        'Stock must be greater than 0')
 ];
 
 module.exports = {
