@@ -1,5 +1,7 @@
 const express = require('express');
+const swaggerSetup = require('./swaggerConfig');
 const cors = require('cors');
+const compression = require('compression');
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -12,9 +14,11 @@ require('dotenv').config(); // Ensure environment variables are loaded
 const app = express();
 
 // Middleware
+app.use(compression());
 app.use(cors());
 app.options('*', cors());
 app.use(express.json());
+swaggerSetup(app);
 
 // Routes
 app.use('/api/auth', authRoutes);
