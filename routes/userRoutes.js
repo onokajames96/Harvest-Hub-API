@@ -20,7 +20,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   get:
  *     summary: Get all users
  *     tags: [Users]
@@ -36,7 +36,7 @@ router.get('/', auth, authorize('admin'), getAllUsers);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
  *     summary: Get user by ID
  *     tags: [Users]
@@ -57,11 +57,11 @@ router.get('/', auth, authorize('admin'), getAllUsers);
  *       404:
  *         description: User not found
  */
-router.get('/users/:id', auth, authorize('admin'), getUserById);
+router.get('/:id', auth, authorize('admin'), getUserById);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   put:
  *     summary: Update user by ID
  *     tags: [Users]
@@ -97,11 +97,11 @@ router.get('/users/:id', auth, authorize('admin'), getUserById);
  *       404:
  *         description: User not found
  */
-router.put('/users/:id', auth, authorize('admin'), updateUser);
+router.put('/:id', auth, authorize('admin'), updateUser);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   delete:
  *     summary: Delete user by ID
  *     tags: [Users]
@@ -122,6 +122,6 @@ router.put('/users/:id', auth, authorize('admin'), updateUser);
  *       404:
  *         description: User not found
  */
-router.delete('/users/:id', auth, authorize('admin'), deleteUser);
+router.delete('/:id', auth, authorize('admin'), deleteUser);
 
 module.exports = router;
