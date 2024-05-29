@@ -1,7 +1,10 @@
 # E-commerce API[Harvest-Hub-API]
 
+## Introduction
+
 This project is an E-commerce API built with Node.js, Express, and MongoDB. It includes basic features such as user authentication, product management, and order processing.
-. Table of Contents
+
+## Table of Contents
 
    1. Features
    2. Tech Stack
@@ -10,18 +13,39 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
    5. API Endpoints
    6. Future Extensions
    7. Contributing
-    .License
+   8. License
 
-# Features
+### Features
 
-    . Authentication and Authorization
-        Sign Up
-        Sign In
-        Sign Out
-        JWT token authorization
+    # Authentication and Authorization.
+
+Role-based user authentication and authorization was implemented. We currently included three types of users namely admin, buyer, and seller. The default user is set to seller. Therefore, if a user registers without the role field, they will be assigned the default role. Bellow is a summary of the process and routes involved.
+	- Register a user
+	- Verify a user's email
+	- Login a user
+	- Authrize user by issuing a JWT token
+	- Request password reset
+	- Reset password
+	- Change password
+
+A user registered as a seller essentially represent the farmer. Sellers are authorised to all product management routes as detailed under product management.
+
+A user registered as a buyer represents the consumer. The are authorised and have access to some specific product routes. They however have exclusive acess to cart and order routes.
+
+Admin users on the other hand are like super user. They have a broader array of access rights.
+
+For detailed description of this API's endpoints.
 
     # Product Management
-        Add, Edit, View (one/all), and Delete products
+
+Below is a summary of the product management routes.
+	- Add a product
+	- Edit a product
+	- View all products
+	- View a product by its ID
+	- Delete a product by its ID
+
+For a detailed description of this APS's endpoints.
 
     # Cart Management
         Create cart
