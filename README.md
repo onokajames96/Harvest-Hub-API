@@ -23,6 +23,16 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 - User Authentication (Login)
 - User Logout
 - Password Reset
+- password Change
+- Create Product
+- View products
+- View product by ID
+- Update product
+- Delete product
+- Create cart
+- Add products to cart
+- Delete product from cart
+- Calculate order
 
 ## Technology Stack
 
@@ -76,7 +86,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 
 ### User Registration
 
-- **Endpoint:** `POST /api/users/register`
+- **Endpoint:** `POST /api/auth/register`
 - **Description:** Registers a new user.
 - **Request Body:**
 
@@ -99,7 +109,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 
 ### User Verification
 
-- **Endpoint:** `GET /api/users/verify/:token`
+- **Endpoint:** `GET /api/auth/verify/:token`
 - **Description:** Verifies a user's email address.
 - **Response:**
 
@@ -111,7 +121,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 
 ### User Login
 
-- **Endpoint:** `POST /api/users/login`
+- **Endpoint:** `POST /api/auth/login`
 - **Description:** Authenticates a user and returns a JWT token.
 - **Request Body:**
 
@@ -133,7 +143,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 
 ### User Logout
 
-- **Endpoint:** `POST /api/users/logout`
+- **Endpoint:** `POST /api/auth/logout`
 - **Description:** Logs out a user (optional server-side tasks).
 - **Headers:**
 
@@ -153,7 +163,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 
 - **Request Password Reset:**
 
-    - **Endpoint:** `POST /api/users/reset-password-request`
+    - **Endpoint:** `POST /api/auth/reset-password-request`
     - **Description:** Sends a password reset email.
     - **Request Body:**
 
@@ -173,7 +183,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 
 - **Reset Password:**
 
-    - **Endpoint:** `POST /api/users/reset-password/:token`
+    - **Endpoint:** `POST /api/auth/reset-password/:token`
     - **Description:** Resets the user's password.
     - **Request Body:**
 
@@ -196,7 +206,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 1. **Register a new user:**
 
     ```bash
-    curl -X POST http://localhost:5000/api/users/register -H "Content-Type: application/json" -d '{
+    curl -X POST http://localhost:5000/api/auth/register -H "Content-Type: application/json" -d '{
         "name": "John Doe",
         "email": "john.doe@example.com",
         "password": "password123",
@@ -211,7 +221,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 3. **Log in the user:**
 
     ```bash
-    curl -X POST http://localhost:5000/api/users/login -H "Content-Type: application/json" -d '{
+    curl -X POST http://localhost:5000/api/auth/login -H "Content-Type: application/json" -d '{
         "email": "john.doe@example.com",
         "password": "password123"
     }'
@@ -220,7 +230,7 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 4. **Log out the user:**
 
     ```bash
-    curl -X POST http://localhost:5000/api/users/logout -H "Authorization: Bearer your_jwt_token"
+    curl -X POST http://localhost:5000/api/auth/logout -H "Authorization: Bearer your_jwt_token"
     ```
 
 ## License
