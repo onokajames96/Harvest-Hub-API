@@ -5,7 +5,7 @@ const { auth } = require('../middlewares/auth');
 
 /**
  * @swagger
- * /order:
+ * /api/orders:
  *   post:
  *     summary: Create an order
  *     tags: [Order]
@@ -48,7 +48,7 @@ router.post('/', auth, orderController.createOrder);
 
 /**
  * @swagger
- * /order/user/{userId}:
+ * /api/orders/user/{userId}:
  *   get:
  *     summary: Get user's orders
  *     tags: [Order]
@@ -73,7 +73,7 @@ router.get('/user/:userId', auth, orderController.getUserOrders);
 
 /**
  * @swagger
- * /order/{orderId}:
+ * /api/orders/{orderId}:
  *   get:
  *     summary: Get a single order
  *     tags: [Order]
@@ -98,7 +98,7 @@ router.get('/:orderId', auth, orderController.getOrder);
 
 /**
  * @swagger
- * /order/{orderId}:
+ * /api/orders/{orderId}:
  *   delete:
  *     summary: Delete an order
  *     tags: [Order]

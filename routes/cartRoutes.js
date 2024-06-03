@@ -5,7 +5,7 @@ const { auth } = require('../middlewares/auth');
 
 /**
  * @swagger
- * /cart/add:
+ * /api/cart/add:
  *   post:
  *     summary: Add an item to the cart
  *     tags: [Cart]
@@ -41,7 +41,7 @@ router.post('/add', auth, cartController.addToCart);
 
 /**
  * @swagger
- * /cart/remove:
+ * /api/cart/remove:
  *   post:
  *     summary: Remove an item from the cart
  *     tags: [Cart]
@@ -75,7 +75,7 @@ router.post('/remove', auth, cartController.removeFromCart);
 
 /**
  * @swagger
- * /cart/user/{userId}:
+ * /api/cart/user/{userId}:
  *   get:
  *     summary: Get user's cart
  *     tags: [Cart]
@@ -100,7 +100,7 @@ router.get('/user/:userId', auth, cartController.getUserCart);
 
 /**
  * @swagger
- * /cart/user/{userId}:
+ * /api/cart/user/{userId}:
  *   delete:
  *     summary: Delete user's cart
  *     tags: [Cart]
