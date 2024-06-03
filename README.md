@@ -236,12 +236,3 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-
-    # Cart Management
-        Create cart
-        Add items to cart
-        Remove items from cart
-
-    # Order Processing
-        Calculate order
