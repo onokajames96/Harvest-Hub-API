@@ -9,17 +9,18 @@ const localUri = process.env.MONGODB_LOCAL_URI;
 const connectDB = async () => {
 	try {
     // Try connecting to MongoDB Atlas
+    console.log("Attempting to Connect to MongoDB Atlas...")
     await mongoose.connect(atlasUri);
-    console.log("Connected successfully to MongoDB Atlas");
+    console.log("Connected Successfully to MongoDB Atlas");
   } catch (err) {
-    console.error("Failed to connect to MongoDB Atlas, " +
-	    "attempting to connect to local MongoDB");
+    console.error("Failed to Connect to MongoDB Atlas... " +
+	    "Attempting to Connect to Local MongoDB..");
     try {
       // Fallback to local MongoDB
       await mongoose.connect(localUri);
-      console.log("Connected successfully to local MongoDB");
+      console.log("Connected Successfully to Local MongoDB");
     } catch (localErr) {
-      console.error("Failed to connect to local MongoDB", localErr);
+      console.error("Failed to Connect to Local MongoDB..." + "Ensure Mongod Service is Running and Database Configured Correctly...");
       throw localErr; // If both connections fail, throw an error
     }
   }

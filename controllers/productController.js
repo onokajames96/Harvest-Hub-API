@@ -99,7 +99,7 @@ const deleteProduct = async (req, res) => {
             return res.status(403).json({ message: 'User not authorized to delete this product' });
         }
 
-        await product.remove();
+        await Product.deleteOne();
         res.status(200).json({ message: 'Product deleted' });
     } catch (error) {
         console.error(error);

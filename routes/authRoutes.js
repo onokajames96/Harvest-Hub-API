@@ -20,7 +20,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /auth/register:
+ * /api/auth/register:
  *   post:
  *     summary: Register a new user
  *     tags: [Auth]
@@ -50,7 +50,7 @@ router.post("/register", validate(validateUserRegistration), registerUser);
 
 /**
  * @swagger
- * /auth/verify/{token}:
+ * /api/auth/verify/{token}:
  *   get:
  *     summary: Verify a user's email
  *     tags: [Auth]
@@ -71,7 +71,7 @@ router.get('/verify/:token', verifyUser);
 
 /**
  * @swagger
- * /auth/login:
+ * /api/auth/login:
  *   post:
  *     summary: Login a user
  *     tags: [Auth]
@@ -98,7 +98,7 @@ router.post("/login", validate(validateUserLogin), loginUser);
 
 /**
  * @swagger
- * /auth/request-reset:
+ * /api/auth/request-reset:
  *   post:
  *     summary: Request password reset
  *     tags: [Auth]
@@ -123,7 +123,7 @@ router.post('/request-reset', validate(
 
 /**
  * @swagger
- * /auth/reset/{token}:
+ * /api/auth/reset/{token}:
  *   post:
  *     summary: Reset password
  *     tags: [Auth]
@@ -154,7 +154,7 @@ router.post('/reset/:token', validate( validatePasswordReset), resetPassword);
 
 /**
  * @swagger
- * /auth/change-password:
+ * /api/auth/change-password:
  *   put:
  *     summary: Change password
  *     tags: [Auth]

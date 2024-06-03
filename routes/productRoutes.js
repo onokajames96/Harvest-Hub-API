@@ -22,7 +22,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /products/seller:
+ * /api/products/seller:
  *   get:
  *     summary: Get products of a seller
  *     tags: [Products]
@@ -34,11 +34,11 @@ const router = express.Router();
  *       401:
  *         description: Unauthorized
  */
-router.get('/seller', auth, authorize('admin', 'seller'), getSellerProducts);
+router.get('/seller', auth, authorize('admin', 'buyer', 'seller'), getSellerProducts);
 
 /**
  * @swagger
- * /products/{id}:
+ * /api/products/{id}:
  *   delete:
  *     summary: Delete product by ID
  *     tags: [Products]
@@ -63,7 +63,7 @@ router.delete('/:id', auth, authorize('admin', 'seller'), deleteProduct);
 
 /**
  * @swagger
- * /products:
+ * /api/products:
  *   post:
  *     summary: Create a new product
  *     tags: [Products]
@@ -97,7 +97,7 @@ router.post('/', auth, authorize('seller'), createProduct);
 
 /**
  * @swagger
- * /products/{id}:
+ * /api/products/{id}:
  *   put:
  *     summary: Update product by ID
  *     tags: [Products]
@@ -140,7 +140,7 @@ router.put('/:id', auth, authorize('seller'), updateProduct);
 
 /**
  * @swagger
- * /products:
+ * /api/products:
  *   get:
  *     summary: Get all products
  *     tags: [Products]
@@ -152,11 +152,11 @@ router.put('/:id', auth, authorize('seller'), updateProduct);
  *       401:
  *         description: Unauthorized
  */
-router.get('/', auth, authorize('admin', 'buyer', 'seller'), getProducts);
+router.get('/', auth, authorize('admin', 'buyer'), getProducts);
 
 /**
  * @swagger
- * /products/{id}:
+ * /api/products/{id}:
  *   get:
  *     summary: Get product by ID
  *     tags: [Products]
