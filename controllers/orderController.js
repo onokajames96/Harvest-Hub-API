@@ -1,7 +1,6 @@
 const Order = require('../models/order');
 const Cart = require('../models/cart');
 
-// Create  the Order
 exports.createOrder = async (req, res) => {
   const { address } = req.body;
   const userId = req.user.id;
@@ -33,7 +32,6 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-// Get User Orders
 exports.getUserOrders = async (req, res) => {
   const userId = req.params.userId;
 
@@ -45,7 +43,6 @@ exports.getUserOrders = async (req, res) => {
   }
 };
 
-// Get Single Order
 exports.getOrder = async (req, res) => {
   const { orderId } = req.params;
 
@@ -61,7 +58,6 @@ exports.getOrder = async (req, res) => {
   }
 };
 
-// Delete the Order
 exports.deleteOrder = async (req, res) => {
   const { orderId } = req.params;
 
