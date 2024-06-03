@@ -14,7 +14,8 @@ This project is an E-commerce API built with Node.js, Express, and MongoDB. It i
    5. [API Endpoints](#api-endpoints)
    6. [Future Extensions](#future-extensions)
    7. [Contributing](#contributing)
-   8. [License](#license)
+   8. [Detailed API Documentation](http://localhost:5000/api-docs/)
+   9. [License](#license)
 
 ## Features
 
