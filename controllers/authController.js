@@ -8,7 +8,12 @@ const User = require('../models/user');
 
 require('dotenv').config(); // Ensure environment variables are loaded
 
-// Generate JWT
+/**
+ * Generates a JWT token for a given user.
+ *
+ * @param {Object} user - The user object.
+ * @returns {string} - The JWT token.
+ */
 const generateToken = (user) => {
 	return jwt.sign(
 		{ id: user._id },
@@ -17,7 +22,13 @@ const generateToken = (user) => {
 	);
 };
 
-// User Registration
+/**
+ * Registers a new user and sends a verification email.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const registerUser = async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -55,8 +66,8 @@ const registerUser = async (req, res) => {
 			text: `Please verify your account by clicking the link: ${verifyUrl}`
 		});
 
-		console.log(verifyUrl);
-		console.log(user.verificationToken);
+		console.log(verifyUrl); // Log verification URL (for debugging purposes)
+		//console.log(user.verificationToken);
 		res.status(201).json({ message: "Verification email sent" });
 	}  catch (err) {
 		console.error(err.message);
@@ -64,7 +75,13 @@ const registerUser = async (req, res) => {
 	}
 };
 
-// Verify User
+/**
+ * Verifies a user's account using a verification token.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const verifyUser = async (req, res) => {
 	try {
 		const user = await User.findOne({ verificationToken: req.params.token });
@@ -83,7 +100,13 @@ const verifyUser = async (req, res) => {
 	}
 };
 
-// User Login
+/**
+ * Logs in a user and returns a JWT token.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const loginUser = async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -115,7 +138,13 @@ const loginUser = async (req, res) => {
 	}
 };
 
-// Request Password Reset
+/**
+ * Sends a password reset email to the user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const requestPasswordReset = async (req, res) => {
 	const { email } = req.body;
 
@@ -138,7 +167,7 @@ const requestPasswordReset = async (req, res) => {
 			text: `Please reset your password by clicking the link: ${resetUrl}`
 			});
 
-		console.log(user.resetPasswordToken);
+		console.log(user.resetPasswordToken); // Log reset password token (for debugging purposes)
 		res.json({ message: 'Password reset email sent' });
 
 		} catch (err) {
@@ -147,7 +176,13 @@ const requestPasswordReset = async (req, res) => {
 		}
 };
 
-// Reset Password
+/**
+ * Resets the user's password using a reset token.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const resetPassword = async (req, res) => {
 	const { token } = req.params;
 	const { password } = req.body;
@@ -176,7 +211,13 @@ const resetPassword = async (req, res) => {
 	}
 };
 
-// Change Password
+/**
+ * Changes the user's password.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const changePassword = async (req, res) => {
 	const { oldPassword, newPassword } = req.body;
 

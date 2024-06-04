@@ -1,9 +1,13 @@
 const User = require('../models/user');
-// const Product = require('../models/product');
-// const Cart = require('../models/cart'); 
-// const Order = require('../models/order');
 
 // Get all users
+/**
+ * Retrieves all users. Excludes passwords from the response.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getAllUsers = async (req, res) => {
 	try {
 		const users = await User.find({}).select('-password');
@@ -15,6 +19,13 @@ const getAllUsers = async (req, res) => {
  };
 
 // Get user by ID
+/**
+ * Retrieves a user by their ID. Excludes the password from the response.
+ *
+ * @param {Object} req - The request object containing the user ID.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getUserById = async (req, res) => {
 	try {
 		const user = await User.findById(req.params.id).select('-password');
@@ -29,6 +40,13 @@ const getUserById = async (req, res) => {
 };
 
 // Update user by ID
+/**
+ * Updates a user by their ID.
+ *
+ * @param {Object} req - The request object containing the user ID and updated data.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const updateUser = async (req, res) => {
 	try {
 		const user = await User.findById(req.params.id);
@@ -51,6 +69,13 @@ const updateUser = async (req, res) => {
 };
 
 // Delete user by ID
+/**
+ * Deletes a user by their ID.
+ *
+ * @param {Object} req - The request object containing the user ID.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const deleteUser = async (req, res) => {
 	try {
 		const user = await User.findById(req.params.id);

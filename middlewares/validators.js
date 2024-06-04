@@ -1,13 +1,23 @@
 const { check, validationResult } = require('express-validator');
 
-// Validate request data
+/**
+ * Middleware to validate request data based on provided validations.
+ *
+ * @param {Array} validations - Array of validation rules.
+ * @returns {Function} - Express middleware function.
+ */
 const validate = (validations) => {
     return async (req, res, next) => {
+	// Run all validations
         await Promise.all(validations.map(validation => validation.run(req)));
+
+	// Get validation errors
         const errors = validationResult(req);
         if (errors.isEmpty()) {
-            return next();
+            return next(); // Proceed to next middleware if no errors
         }
+
+	// Return validation errors
         res.status(400).json({ errors: errors.array() });
     };
 };
@@ -31,13 +41,13 @@ const validateResetRequest = [
     check('email').isEmail().withMessage('Please include a valid email')
 ];
 
-// Validation rules for password reseting
+// Validation rules for password reset
 const validatePasswordReset = [
      check('password', 
          'Password must be at least 6 characters').isLength({ min: 6 })
 ];
 
-// Validation rules for password changing
+// Validation rules for password change
 const validatePasswordChange = [
      check('oldPassword', 'Old password is required').exists(),
      check('newPassword',
