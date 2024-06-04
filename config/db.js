@@ -1,11 +1,17 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
+// Load environment variables from .env file
 dotenv.config();
 
+// MongoDB connection URIs
 const atlasUri = process.env.MONGODB_ATLAS_URI;
 const localUri = process.env.MONGODB_LOCAL_URI;
 
+/**
+ * Function to connect to MongoDB.
+ * Attempts to connect to MongoDB Atlas first, and falls back to local MongoDB if Atlas connection fails.
+ */
 const connectDB = async () => {
 	try {
     // Try connecting to MongoDB Atlas

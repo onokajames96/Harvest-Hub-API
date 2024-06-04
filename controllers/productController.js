@@ -1,6 +1,13 @@
 const Product = require('../models/product');
 
 // Create a new product (Sellers only)
+/**
+ * Creates a new product. Only sellers are allowed to create products.
+ *
+ * @param {Object} req - The request object containing the product details.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const createProduct = async (req, res) => {
     try {
         const { name, description, price, category, stock } = req.body;
@@ -24,6 +31,13 @@ const createProduct = async (req, res) => {
 };
 
 // Get all products (Admin and Buyers)
+/**
+ * Retrieves all products. Both admin and buyers can access this endpoint.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getProducts = async (req, res) => {
     try {
         const products = await Product.find().populate('seller', 'name email');
@@ -35,6 +49,13 @@ const getProducts = async (req, res) => {
 };
 
 // Get all products by seller (All)
+/**
+ * Retrieves all products created by a specific seller. Any authenticated user can access this endpoint.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getSellerProducts = async (req, res) => {
     try {
         const products = await Product.find({ seller: req.user.id }).populate('seller', 'name email');
@@ -46,6 +67,13 @@ const getSellerProducts = async (req, res) => {
 };
 
 // Get a single product by ID
+/**
+ * Retrieves a single product by its ID.
+ *
+ * @param {Object} req - The request object containing the product ID.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id).populate('seller', 'name email');
@@ -60,6 +88,13 @@ const getProductById = async (req, res) => {
 };
 
 // Update a product by ID (Sellers only)
+/**
+ * Updates a product by its ID. Only the seller who created the product can update it.
+ *
+ * @param {Object} req - The request object containing the updated product details.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const updateProduct = async (req, res) => {
     try {
         const { name, description, price, category, stock } = req.body;
@@ -88,6 +123,13 @@ const updateProduct = async (req, res) => {
 };
 
 // Delete a product by ID (Sellers only)
+/**
+ * Deletes a product by its ID. Only the seller who created the product can delete it.
+ *
+ * @param {Object} req - The request object containing the product ID.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const deleteProduct = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
